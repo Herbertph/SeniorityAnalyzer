@@ -38,7 +38,7 @@ public class AnalyzeController {
                 !request.getRepoUrl().startsWith("https://github.com/")) {
             throw new IllegalArgumentException("Invalid GitHub repository URL");
         }
-        
+
         // 1. Parse GitHub repo URL
         GitHubRepo repo = GitHubRepoParser.parse(request.getRepoUrl());
 
