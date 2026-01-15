@@ -5,6 +5,8 @@ import com.herbert.seniorityanalyzer.dto.AnalyzeResponse;
 import com.herbert.seniorityanalyzer.github.GitHubRepo;
 import com.herbert.seniorityanalyzer.github.GitHubRepoParser;
 import com.herbert.seniorityanalyzer.service.GitHubSignalService;
+import com.herbert.seniorityanalyzer.service.ScoreResult;
+import com.herbert.seniorityanalyzer.service.ScoringService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -14,9 +16,14 @@ import java.util.Map;
 public class AnalyzeController {
 
     private final GitHubSignalService signalService;
+    private final ScoringService scoringService;
 
-    public AnalyzeController(GitHubSignalService signalService) {
+    public AnalyzeController(
+            GitHubSignalService signalService,
+            ScoringService scoringService
+    ) {
         this.signalService = signalService;
+        this.scoringService = scoringService;
     }
 
     @PostMapping
@@ -25,10 +32,15 @@ public class AnalyzeController {
         GitHubRepo repo = GitHubRepoParser.parse(request.getRepoUrl());
         Map<String, Object> signals = signalService.extractSignals(repo);
 
+        ScoreResult result = scoringService.calculate(signals);
+
         return new AnalyzeResponse(
-                10,
-                "Signals extracted",
-                signals.toString()
+                result.finalScore(),
+                result.level(),
+                "Architecture: " + result.architecture()
+                        + ", Testing: " + result.testing()
+                        + ", Infrastructure: " + result.infrastructure()
+                        + ", Documentation: " + result.documentation()
         );
     }
 }
