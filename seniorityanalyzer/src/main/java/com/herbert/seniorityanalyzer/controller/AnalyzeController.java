@@ -33,6 +33,12 @@ public class AnalyzeController {
     @PostMapping
     public AnalyzeResponse analyze(@RequestBody AnalyzeRequest request) {
 
+        // 0. Validate input (fail fast)
+        if (request.getRepoUrl() == null ||
+                !request.getRepoUrl().startsWith("https://github.com/")) {
+            throw new IllegalArgumentException("Invalid GitHub repository URL");
+        }
+        
         // 1. Parse GitHub repo URL
         GitHubRepo repo = GitHubRepoParser.parse(request.getRepoUrl());
 
