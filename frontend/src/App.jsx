@@ -2,6 +2,7 @@ import { useState } from "react";
 import Hero from "./components/Hero";
 import Result from "./components/Result";
 import ScoreBreakdown from "./components/ScoreBreakdown";
+import Footer from "./components/Footer";
 
 function App() {
   const [repoUrl, setRepoUrl] = useState("");
@@ -39,19 +40,25 @@ function App() {
   }
 
   return (
-    <div style={styles.page}>
-      <div style={styles.container}>
-        <Hero
-          repoUrl={repoUrl}
-          setRepoUrl={setRepoUrl}
-          onAnalyze={analyze}
-          loading={loading}
-        />
+    <>
+      {/* MAIN CONTENT */}
+      <div style={styles.page}>
+        <div style={styles.container}>
+          <Hero
+            repoUrl={repoUrl}
+            setRepoUrl={setRepoUrl}
+            onAnalyze={analyze}
+            loading={loading}
+          />
 
-        <Result result={result} />
-        <ScoreBreakdown result={result} />
+          <Result result={result} />
+          <ScoreBreakdown result={result} />
+        </div>
       </div>
-    </div>
+
+      {/* FOOTER FULL WIDTH */}
+      <Footer />
+    </>
   );
 }
 
@@ -61,7 +68,7 @@ const styles = {
     background: "#f5f6f8",
     display: "flex",
     justifyContent: "center",
-    padding: "60px 20px"
+    padding: "60px 20px 0"
   },
   container: {
     width: "100%",
