@@ -1,28 +1,26 @@
-export default function ScoreCard({ title, score, maxScore, description }) {
-  const percentage = Math.round((score / maxScore) * 100);
-
+export default function ScoreCard({ title, score, weight, description }) {
   return (
     <div style={styles.card}>
       <h3 style={styles.title}>{title}</h3>
 
-      {/* SCORE BAR */}
       <div style={styles.scoreBar}>
         <div
           style={{
             ...styles.scoreFill,
-            width: `${percentage}%`
+            width: `${score}%`
           }}
         />
       </div>
 
       <p style={styles.scoreText}>
-        {score} / {maxScore}
+        {score} / 100 · <span style={styles.weight}>{weight}</span>
       </p>
 
       <p style={styles.description}>{description}</p>
     </div>
   );
 }
+
 
 /* ================= STYLES ================= */
 

@@ -6,31 +6,31 @@ export default function ScoreBreakdown({ result }) {
   const criteria = [
     {
       title: "Architecture",
-      score: result.architectureScore,
-      max: 25,
+      score: result.architecture,
+      weight: "High impact",
       description:
-        "We expect a clear separation of responsibilities, modular structure, and well-defined boundaries between layers."
+        "Architecture reflects system design, separation of concerns, and long-term maintainability."
     },
     {
       title: "Testing",
-      score: result.testingScore,
-      max: 25,
+      score: result.testing,
+      weight: "Medium-high impact",
       description:
-        "Projects should include automated tests covering core logic, with clear intent and maintainability."
+        "Automated tests improve reliability, prevent regressions, and signal engineering maturity."
     },
     {
       title: "Infrastructure",
-      score: result.infrastructureScore,
-      max: 25,
+      score: result.infrastructure,
+      weight: "Medium impact",
       description:
-        "A mature project shows awareness of deployment, configuration, CI/CD, and environment separation."
+        "Infrastructure shows readiness for deployment, CI/CD, and real-world operation."
     },
     {
       title: "Documentation",
-      score: result.documentationScore,
-      max: 25,
+      score: result.documentation,
+      weight: "Supportive impact",
       description:
-        "Good documentation explains purpose, setup, and usage clearly, helping others understand and contribute."
+        "Documentation helps others understand, use, and contribute to the project."
     }
   ];
 
@@ -41,20 +41,10 @@ export default function ScoreBreakdown({ result }) {
           key={item.title}
           title={item.title}
           score={item.score}
-          maxScore={item.max}
+          weight={item.weight}
           description={item.description}
         />
       ))}
     </section>
   );
 }
-
-/* ================= STYLES ================= */
-
-const styles = {
-  wrapper: {
-    display: "grid",
-    gridTemplateColumns: "repeat(2, 1fr)",
-    gap: 40
-  }
-};
