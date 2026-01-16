@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Hero from "./components/Hero";
 import Result from "./components/Result";
+import ScoreBreakdown from "./components/ScoreBreakdown";
 
 function App() {
   const [repoUrl, setRepoUrl] = useState("");
@@ -48,6 +49,7 @@ function App() {
         />
 
         <Result result={result} />
+        <ScoreBreakdown result={result} />
       </div>
     </div>
   );
