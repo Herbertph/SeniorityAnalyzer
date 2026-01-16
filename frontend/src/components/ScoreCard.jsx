@@ -13,16 +13,13 @@ export default function ScoreCard({ title, score, weight, description }) {
       </div>
 
       <p style={styles.scoreText}>
-        {score} / 100 · <span style={styles.weight}>{weight}</span>
+        {score}% · <span style={styles.weight}>{weight}</span>
       </p>
 
       <p style={styles.description}>{description}</p>
     </div>
   );
 }
-
-
-/* ================= STYLES ================= */
 
 const styles = {
   card: {
@@ -33,12 +30,10 @@ const styles = {
     display: "flex",
     flexDirection: "column"
   },
-
   title: {
     fontSize: 22,
     marginBottom: 16
   },
-
   scoreBar: {
     height: 10,
     background: "#e5e7eb",
@@ -46,18 +41,19 @@ const styles = {
     overflow: "hidden",
     marginBottom: 8
   },
-
   scoreFill: {
     height: "100%",
     background: "#16a34a",
     transition: "width 0.6s ease"
   },
-
   scoreText: {
     fontWeight: 600,
     marginBottom: 16
   },
-
+  weight: {
+    color: "#6b7280",
+    fontWeight: 500
+  },
   description: {
     color: "#374151",
     lineHeight: 1.6,

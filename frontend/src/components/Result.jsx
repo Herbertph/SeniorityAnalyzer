@@ -6,7 +6,7 @@ import React from "react";
  */
 const LEVEL_BADGES = {
   "Junior-level": "/badges/junior.png",
-  "mid-level": "/badges/engineer.png",
+  "Engineer-level": "/badges/engineer.png",
   "Senior-level": "/badges/senior.png"
 };
 
