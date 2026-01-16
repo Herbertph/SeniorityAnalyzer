@@ -1,12 +1,53 @@
+import { useState } from "react";
 import Hero from "./components/Hero";
 import Result from "./components/Result";
 
 function App() {
+  const [repoUrl, setRepoUrl] = useState("");
+  const [result, setResult] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  async function analyze() {
+    if (!repoUrl) return;
+
+    setLoading(true);
+    setResult(null);
+
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/analyze`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ repoUrl })
+        }
+      );
+
+      if (!res.ok) {
+        throw new Error(await res.text());
+      }
+
+      const data = await res.json();
+      setResult(data);
+    } catch (err) {
+      console.error(err);
+      alert("Failed to analyze repository.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <div style={styles.page}>
       <div style={styles.container}>
-        <Hero />
-        <Result />
+        <Hero
+          repoUrl={repoUrl}
+          setRepoUrl={setRepoUrl}
+          onAnalyze={analyze}
+          loading={loading}
+        />
+
+        <Result result={result} />
       </div>
     </div>
   );
