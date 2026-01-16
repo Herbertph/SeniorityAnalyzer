@@ -48,3 +48,13 @@ export default function ScoreBreakdown({ result }) {
     </section>
   );
 }
+
+/* ================= STYLES ================= */
+const styles = {
+  wrapper: {
+    display: "grid",
+    gridTemplateColumns: "repeat(2, 1fr)",
+    gap: 40,
+    marginTop: 40
+  }
+};
