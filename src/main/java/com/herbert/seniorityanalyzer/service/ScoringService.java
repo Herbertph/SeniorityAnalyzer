@@ -46,7 +46,7 @@ public class ScoringService {
     }
 
     private int scoreTesting(Map<String, Object> signals) {
-        // MVP: ainda não analisamos testes
+        // MVP: placeholder consciente
         return 20;
     }
 
@@ -54,8 +54,9 @@ public class ScoringService {
         Map<String, Integer> languages =
                 (Map<String, Integer>) signals.get("languages");
 
-        boolean hasDocker = languages.containsKey("Dockerfile")
-                || languages.containsKey("Shell");
+        boolean hasDocker =
+                languages.containsKey("Dockerfile") ||
+                        languages.containsKey("Shell");
 
         return hasDocker ? 70 : 30;
     }
@@ -66,8 +67,8 @@ public class ScoringService {
     }
 
     private String classify(int score) {
-        if (score >= 70) return "Senior-like";
-        if (score >= 40) return "Mid-level";
+        if (score >= 70) return "Senior-level";
+        if (score >= 40) return "Engineer-level";
         return "Junior-level";
     }
 }
