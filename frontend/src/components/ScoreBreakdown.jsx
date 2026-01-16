@@ -53,6 +53,7 @@ const styles = {
   wrapper: {
     display: "grid",
     gridTemplateColumns: "repeat(2, 1fr)",
-    gap: 40
+    gap: 40,
+    marginBottom: 60
   }
 };
