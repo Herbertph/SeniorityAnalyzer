@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function App() {
   const [repoUrl, setRepoUrl] = useState("");
   const [result, setResult] = useState(null);
@@ -7,19 +9,21 @@ function App() {
   const [error, setError] = useState(null);
 
   async function analyze() {
+    if (!repoUrl.startsWith("https://github.com/")) {
+      setError("Please enter a valid GitHub repository URL.");
+      return;
+    }
+
     setLoading(true);
     setError(null);
     setResult(null);
 
     try {
-      const res = await fetch(
-        "https://seniorityanalyzer-production.up.railway.app/analyze",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ repoUrl })
-        }
-      );
+      const res = await fetch(`${API_URL}/analyze`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ repoUrl }),
+      });
 
       if (!res.ok) {
         throw new Error(await res.text());
