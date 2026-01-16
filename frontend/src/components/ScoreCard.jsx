@@ -1,4 +1,6 @@
-export default function ScoreCard({ title, score, weight, description }) {
+export default function ScoreCard({ title, score = 0, weight, description }) {
+  const safeScore = Math.min(Math.max(score, 0), 100);
+
   return (
     <div style={styles.card}>
       <h3 style={styles.title}>{title}</h3>
@@ -7,19 +9,20 @@ export default function ScoreCard({ title, score, weight, description }) {
         <div
           style={{
             ...styles.scoreFill,
-            width: `${score}%`
+            width: `${safeScore}%`
           }}
         />
       </div>
 
       <p style={styles.scoreText}>
-        {score}% · <span style={styles.weight}>{weight}</span>
+        {safeScore}% · <span style={styles.weight}>{weight}</span>
       </p>
 
       <p style={styles.description}>{description}</p>
     </div>
   );
 }
+
 
 const styles = {
   card: {

@@ -6,28 +6,28 @@ export default function ScoreBreakdown({ result }) {
   const criteria = [
     {
       title: "Architecture",
-      score: result.architecture,
+      score: result.architectureScore,
       weight: "High impact",
       description:
         "Architecture reflects system design, separation of concerns, and long-term maintainability."
     },
     {
       title: "Testing",
-      score: result.testing,
+      score: result.testingScore,
       weight: "Medium-high impact",
       description:
         "Automated tests improve reliability, prevent regressions, and signal engineering maturity."
     },
     {
       title: "Infrastructure",
-      score: result.infrastructure,
+      score: result.infrastructureScore,
       weight: "Medium impact",
       description:
         "Infrastructure shows readiness for deployment, CI/CD, and real-world operation."
     },
     {
       title: "Documentation",
-      score: result.documentation,
+      score: result.documentationScore,
       weight: "Supportive impact",
       description:
         "Documentation helps others understand, use, and contribute to the project."
@@ -49,12 +49,10 @@ export default function ScoreBreakdown({ result }) {
   );
 }
 
-/* ================= STYLES ================= */
 const styles = {
   wrapper: {
     display: "grid",
     gridTemplateColumns: "repeat(2, 1fr)",
-    gap: 40,
-    marginTop: 40
+    gap: 40
   }
 };
