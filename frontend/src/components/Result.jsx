@@ -87,7 +87,8 @@ const styles = {
     gridTemplateColumns: "1fr 1fr", // 🔑 IGUAL AO HERO
     overflow: "hidden",
     boxShadow: "0 20px 40px rgba(0,0,0,0.08)",
-    marginTop: -25
+    marginTop: -25,
+    marginBottom: 60
   },
 
   left: {
